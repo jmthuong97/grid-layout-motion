@@ -3,14 +3,16 @@ import styled from 'styled-components';
 
 const BoxContent = styled.p`
     position: absolute;
-	max-width: 195px;
 	font-size: 0.9rem;
 	text-align: right;
-	//display: none;
+	@media screen and (min-width: 80em) {
+	    display: block;
+	}
+	@media screen and (max-width: 55em) {
+	    display: none;
+	}
 `;
 
 export default ({children, setRef}) => {
-    return (
-        <BoxContent ref={(el) => setRef("content", el)}>{children}</BoxContent>
-    );
+    return <BoxContent ref={(el) => setRef("content", el)}>{children}</BoxContent>;
 }

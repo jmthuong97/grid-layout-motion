@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = styled.p`
-   display: block;
+    display: block;
     width: 1.5em;
     height: 1.5em;
     margin: 0 auto;

@@ -14,6 +14,9 @@ const Box = styled.div`
 	@media screen and (min-width: 55em) {
 	    margin: 4rem;
 	}
+	@media screen and (min-width: 80em) {
+	    margin: 6rem 4.5rem;
+	}
 `;
 
 export default ({setRef, dataItem}) => {
@@ -22,17 +25,19 @@ export default ({setRef, dataItem}) => {
             <BoxShadow setRef={setRef}/>
             <BoxImg src={dataItem.image.src} alt={dataItem.image.alt} setRef={setRef}/>
             {dataItem.title ?
-                <BoxTitle setRef={setRef} location={dataItem.title.location}>
+                <BoxTitle setRef={setRef} location={dataItem.title.location} straight={dataItem.title.straight}>
                     <BoxTitleInner>{dataItem.title.content}</BoxTitleInner>
                 </BoxTitle> : ""}
-            <BoxText setRef={setRef} location={dataItem.text.location}>
-                <BoxTextInner reverse={dataItem.text.reverse}
-                              rotated={dataItem.text.rotated}>{dataItem.text.content}</BoxTextInner>
-            </BoxText>
+            {dataItem.text ?
+                <BoxText setRef={setRef} location={dataItem.text.location}>
+                    <BoxTextInner reverse={dataItem.text.reverse}
+                                  rotated={dataItem.text.rotated}>{dataItem.text.content}</BoxTextInner>
+                </BoxText> : ""}
             {dataItem.icon ?
                 <BoxDeco setRef={setRef}
                          location={dataItem.icon.location}>{dataItem.icon.content}</BoxDeco> : ""}
-            <BoxContent setRef={setRef}>{dataItem.short_content}</BoxContent>
+            {dataItem.short_content ?
+                <BoxContent setRef={setRef}>{dataItem.short_content}</BoxContent> : ""}
         </Box>
     );
 }

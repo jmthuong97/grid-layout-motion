@@ -5,7 +5,7 @@ const BoxImg = styled.img`
     display: block;
 	flex: none;
 	margin: 0 auto;
-	max-width: 100%;
+	width: 230px;
 	filter: grayscale(100%);
 	transition: filter 0.3s;
 	pointer-events: none;

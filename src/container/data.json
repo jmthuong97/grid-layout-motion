@@ -2,7 +2,7 @@
   "data": [
     {
       "image": {
-        "src": "http://thuthuatphanmem.vn/uploads/2018/04/10/avatar-doi-dep-5_015655497.jpg",
+        "src": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F1.jpg?alt=media&token=68d96e68-8ef5-4f85-b788-afe40f118b11",
         "alt": "image1"
       },
       "title": {
@@ -19,12 +19,13 @@
     },
     {
       "image": {
-        "src": "https://i.9mobi.vn/cf/images/ba/2018/4/16/anh-avatar-dep-8.jpg",
+        "src": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F2.jpg?alt=media&token=f6222e47-adf1-4048-86a8-50f7ef1d11b1",
         "alt": "image2"
       },
       "title": {
         "content": "Gun",
-        "location": "bottom"
+        "location": "bottom",
+        "straight": true
       },
       "text": {
         "content": "Rain",
@@ -39,7 +40,7 @@
     },
     {
       "image": {
-        "src": "https://i.9mobi.vn/cf/images/ba/2018/4/16/anh-avatar-dep-8.jpg",
+        "src": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F3.jpg?alt=media&token=b7440b35-6f8b-4f40-9d5f-1be93ad3b3a7",
         "alt": "image3"
       },
       "title": {
@@ -55,7 +56,7 @@
     },
     {
       "image": {
-        "src": "http://thuthuat123.com/uploads/2018/01/27/avatar-dep-nhat-52_112148.jpg",
+        "src": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F4.jpg?alt=media&token=74632afd-a529-4b22-b223-7e2e58700b9d",
         "alt": "image4"
       },
       "text": {

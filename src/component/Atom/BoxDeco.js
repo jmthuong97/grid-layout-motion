@@ -15,18 +15,9 @@ const BoxDeco = styled.div`
 `;
 
 export default ({children, setRef, location}) => {
-    let style = {};
-    switch (location) {
-        case "left":
-            style = {right: 'auto', left: '-3rem'};
-            break;
-        case "top":
-            style = {top: 0, bottom: 'auto'};
-            break;
-        default:
-            break;
-    }
-    return (
-        <BoxDeco ref={(el) => setRef("deco", el)} style={style}>{children}</BoxDeco>
-    );
+    const configCss = {
+        left: {right: 'auto', left: '-3rem'},
+        top: {top: 0, bottom: 'auto'}
+    };
+    return <BoxDeco ref={(el) => setRef("deco", el)} style={configCss[location]}>{children}</BoxDeco>;
 }

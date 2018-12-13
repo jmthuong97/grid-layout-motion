@@ -23,7 +23,6 @@ const TitleInner = styled.span`
         height: 0;
         overflow: hidden;
         white-space: nowrap;
-        -webkit-text-stroke: 0;
         text-stroke: 0;
         -webkit-text-fill-color: #000;
         text-fill-color: #000;
@@ -43,27 +42,20 @@ const Title = styled.h3`
 		-webkit-writing-mode: vertical-rl;
 		writing-mode: vertical-rl;
 	}
+	@media screen and (max-width: 55em) {
+	    top: 14rem;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	}
 `;
 
-export const BoxTitle = ({children, setRef, location}) => {
-    let style = {};
-    switch (location) {
-        case "left":
-            style = {
-                left: '-2rem',
-                right: 'auto'
-            };
-            break;
-        case "bottom":
-            style = {
-                bottom: '-5rem',
-                top: 'auto'
-            };
-            break;
-        default:
-            break;
-    }
-    return (<Title ref={(el) => setRef("title", el)} style={style}>{children}</Title>);
+export const BoxTitle = ({children, setRef, location, straight}) => {
+    const configCss = {
+        left: {left: '-2rem', right: 'auto', writingMode: straight ? "horizontal-tb" : ""},
+        bottom: {bottom: '-5rem', top: 'auto', writingMode: straight ? "horizontal-tb" : ""}
+    };
+    return (<Title ref={(el) => setRef("title", el)} style={configCss[location]}>{children}</Title>);
 };
 
 export const BoxTitleInner = ({children}) => {

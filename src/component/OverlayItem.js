@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-
 import Item from './Item';
 
 const MainItem = styled.div`
@@ -17,6 +16,7 @@ const MainItem = styled.div`
     padding: 5rem 5vw;
     justify-content: center;
     img{
+        width: 500px;
         filter: grayscale(0);
     }
 `;
@@ -25,6 +25,10 @@ const OverlayContent = styled.p`
 	line-height: 1.5;
 	max-width: 25rem;
 	margin: 1rem 0 0 10vw;
+	@media screen and (min-width: 55em) {
+	    font-size: 2.25rem;
+		margin-top: 0;
+	}
 `;
 
 class OverlayItem extends Component {
@@ -35,8 +39,7 @@ class OverlayItem extends Component {
     }
 
     componentDidMount() {
-        const {setOverlayItems} = this.props;
-        setOverlayItems(this.animatable);
+        this.props.setOverlayItems(this.animatable);
     }
 
     setRef = (label, value) => this.animatable[label] = value;
@@ -46,13 +49,11 @@ class OverlayItem extends Component {
         return (
             <MainItem ref={el => this.animatable["parent"] = el}>
                 <Item dataItem={dataItem} setRef={this.setRef}/>
-                <OverlayContent
-                    ref={el => this.animatable["overlay_content"] = el}>
+                <OverlayContent ref={el => this.animatable["overlay_content"] = el}>
                     {dataItem.description}
                 </OverlayContent>
             </MainItem>
         );
     }
 }
-
 export default OverlayItem;

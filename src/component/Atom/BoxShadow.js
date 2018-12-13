@@ -11,7 +11,5 @@ const BoxShadow = styled.div`
 `;
 
 export default ({setRef}) => {
-    return (
-        <BoxShadow ref={(el) => setRef("shadow", el)}/>
-    );
+    return <BoxShadow ref={(el) => setRef("shadow", el)}/>;
 }

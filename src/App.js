@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
+import GridLayout from './container/GridLayout';
 import './App.css';
-import MainContent from './container/MainContent';
 
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <MainContent/>
+                <GridLayout/>
             </div>
         );
     }

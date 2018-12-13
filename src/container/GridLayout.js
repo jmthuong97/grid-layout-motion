@@ -1,27 +1,13 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {TweenMax} from "gsap/TweenMax";
+import {getRandomInt, lineEq} from '../untils/index';
+import Grid from '../component/Atom/Grid';
 import CloseButton from '../component/Atom/CloseButton';
 import GridItem from '../component/GridItem';
 import OverlayItem from '../component/OverlayItem';
-import tsconfig from './tsconfig';
+import data from './data';
 
-const Content = styled.div`
-    position: relative;
-`;
-const Grid = styled.div`
-    width: 100%;
-	max-width: 1440px;
-	margin: 0 auto;
-	padding-bottom: 10rem;
-	@media screen and (min-width: 55em) {
-	    display: grid;
-		align-items: center;
-		padding: 3rem 3rem 15rem 3rem;
-		grid-row-gap: 2rem;
-		grid-template-columns: repeat(3,calc(100% / 3));
-	}
-`;
 const Overlay = styled.div`
     pointer-events: none;
 	width: 100%;
@@ -56,14 +42,7 @@ const OverlayClose = styled.button`
 	}
 `;
 
-const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-const lineEq = (y2, y1, x2, x1, currentVal) => {
-    // y = mx + b
-    let m = (y2 - y1) / (x2 - x1), b = y1 - m * x1;
-    return m * currentVal + b;
-};
-
-class MainContent extends Component {
+class GridLayout extends Component {
     constructor(props) {
         super(props);
         this.isPreviewOpen = false;
@@ -86,7 +65,6 @@ class MainContent extends Component {
             onComplete: () => {
                 document.body.style.overflow = 'hidden'; // hide scroll
                 this.revealItem(); // show preview
-
                 // hide reveal
                 TweenMax.to(this.overlay_reveal, .5, {
                     delay: 0.2,
@@ -94,6 +72,27 @@ class MainContent extends Component {
                     x: '-100%'
                 });
                 this.overlay_close.style.opacity = 1;
+            }
+        });
+    };
+    hide = () => {
+        this.overlay.style.pointerEvents = 'none';
+        // show reveal
+        TweenMax.to(this.overlay_reveal, .5, {
+            //delay: 0.15,
+            ease: 'Power3.easeOut',
+            x: '0%',
+            onComplete: () => {
+                this.overlay_close.style.opacity = 0;
+                this.contentItem["parent"].style.opacity = 0; // hide preview
+                this.contentItem["parent"].style.flexDirection = 'column';
+                document.body.style.overflow = 'auto'; // show scroll
+                // hide reveal
+                TweenMax.to(this.overlay_reveal, .5, {
+                    delay: 0,
+                    ease: 'Power3.easeOut',
+                    x: '100%'
+                });
             }
         });
     };
@@ -120,30 +119,7 @@ class MainContent extends Component {
         }
     }
 
-    hide = () => {
-        this.overlay.style.pointerEvents = 'none';
-        // show reveal
-        TweenMax.to(this.overlay_reveal, .5, {
-            //delay: 0.15,
-            ease: 'Power3.easeOut',
-            x: '0%',
-            onComplete: () => {
-                this.overlay_close.style.opacity = 0;
-                this.contentItem["parent"].style.opacity = 0; // hide preview
-                this.contentItem["parent"].style.flexDirection = 'column';
-                document.body.style.overflow = 'auto'; // show scroll
-                // hide reveal
-                TweenMax.to(this.overlay_reveal, .5, {
-                    delay: 0,
-                    ease: 'Power3.easeOut',
-                    x: '100%'
-                });
-            }
-        });
-    };
-
-    onClickOpenItem = (index) => this.openItem(index);
-    openItem = (index) => {
+    onClickOpenItem = (index) => {
         if (this.isPreviewOpen) return;
         this.isPreviewOpen = true;
         this.contentItem = this.overlay_items[index];
@@ -184,11 +160,10 @@ class MainContent extends Component {
             }
         }
     };
-    onCloseItem = () => {
+    onClickCloseItem = () => {
         if (!this.isPreviewOpen) return;
         this.isPreviewOpen = false;
         this.hide();
-
         for (let item of this.grid_items) {
             for (let key in item) {
                 if (item[key]) {
@@ -208,32 +183,31 @@ class MainContent extends Component {
     };
 
     render() {
-        const listGridItem = tsconfig.data.map((item, index) => {
+        const listGridItem = data.data.map((item, index) => {
             return <GridItem ref={val => this.items.push(val.mainDom.el)}
                              setGridItems={this.setGridItems}
                              onClickOpenItem={this.onClickOpenItem}
                              key={index} index={index} dataItem={item}/>;
         });
-        const listOverlayItem = tsconfig.data.map((item, index) => {
+        const listOverlayItem = data.data.map((item, index) => {
             return <OverlayItem setOverlayItems={this.setOverlayItems}
                                 key={index} dataItem={item}/>;
         });
         return (
             <div>
-                <Content>
-                    <Grid>
-                        {listGridItem}
-                    </Grid>
-                </Content>
+                <Grid/>
+                <Grid>{listGridItem}</Grid>
                 <Overlay ref={(el) => this.overlay = el}>
                     <OverlayReveal ref={(el) => this.overlay_reveal = el}/>
                     {listOverlayItem}
-                    <OverlayClose onClick={this.onCloseItem}
-                                  ref={(el) => this.overlay_close = el}><CloseButton/></OverlayClose>
+                    <OverlayClose onClick={this.onClickCloseItem}
+                                  ref={(el) => this.overlay_close = el}>
+                        <CloseButton/>
+                    </OverlayClose>
                 </Overlay>
             </div>
         );
     }
 }
 
-export default MainContent;
+export default GridLayout;
