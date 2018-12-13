@@ -1,0 +1,70 @@
+{
+  "data": [
+    {
+      "image": {
+        "src": "http://thuthuatphanmem.vn/uploads/2018/04/10/avatar-doi-dep-5_015655497.jpg",
+        "alt": "image1"
+      },
+      "title": {
+        "content": "Memo"
+      },
+      "text": {
+        "content": "Beast"
+      },
+      "icon": {
+        "content": "✞"
+      },
+      "short_content": "\"Sometimes we go surfing when it's stormy weather\"",
+      "description": "It's time the tale were told of how you took a child and you made him old."
+    },
+    {
+      "image": {
+        "src": "https://i.9mobi.vn/cf/images/ba/2018/4/16/anh-avatar-dep-8.jpg",
+        "alt": "image2"
+      },
+      "title": {
+        "content": "Gun",
+        "location": "bottom"
+      },
+      "text": {
+        "content": "Rain",
+        "location": "bottom",
+        "rotated": "rotated1"
+      },
+      "icon": {
+        "content": "➃",
+        "location": "top"
+      },
+      "description": "It's time the tale were told of how you took a child and you made him old."
+    },
+    {
+      "image": {
+        "src": "https://i.9mobi.vn/cf/images/ba/2018/4/16/anh-avatar-dep-8.jpg",
+        "alt": "image3"
+      },
+      "title": {
+        "content": "Red",
+        "location": "bottom"
+      },
+      "text": {
+        "content": "Life",
+        "location": "bottom",
+        "rotated": "rotated2"
+      },
+      "description": "It's time the tale were told of how you took a child and you made him old."
+    },
+    {
+      "image": {
+        "src": "http://thuthuat123.com/uploads/2018/01/27/avatar-dep-nhat-52_112148.jpg",
+        "alt": "image4"
+      },
+      "text": {
+        "content": "Sponsor",
+        "rotated": "rotated2",
+        "reverse": true
+      },
+      "short_content": "Offers simplified planning and collaboration tools. Create customizable boards to track everything your team is working on and keep all communication in one place and never lose track again.",
+      "description": "It's time the tale were told of how you took a child and you made him old."
+    }
+  ]
+}
