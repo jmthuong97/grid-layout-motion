@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import {TweenMax} from "gsap/TweenMax";
+import imagesloaded from 'imagesloaded';
 import {getRandomInt, lineEq} from '../untils/index';
 import Grid from '../component/Atom/Grid';
 import CloseButton from '../component/Atom/CloseButton';
 import GridItem from '../component/GridItem';
 import OverlayItem from '../component/OverlayItem';
+import Loading from '../component/Atom/Loading';
 import data from './data';
 
 const Overlay = styled.div`
@@ -23,7 +25,7 @@ const OverlayReveal = styled.div`
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: #000;
+	background: #975429;
 	position: absolute;
 	z-index: 100;
 	transform: translate3d(100%,0,0);
@@ -54,6 +56,7 @@ class GridLayout extends Component {
         this.items = []; // ref: List: MainItem (GridItem.js)
     }
 
+    setRefLoading = (el) => this.loading = el;
     setGridItems = (data) => this.grid_items.push(data);
     setOverlayItems = (data) => this.overlay_items.push(data);
 
@@ -182,6 +185,17 @@ class GridLayout extends Component {
         }
     };
 
+    componentDidMount() {
+        document.body.style.overflow = 'hidden'; // hide scroll
+        let listImage = this.grid_items.map(data => {
+            return data.image;
+        });
+        imagesloaded(listImage, () => {
+            this.loading.style.display = "none";
+            document.body.style.overflow = 'scroll'; // hide scroll
+        });
+    }
+
     render() {
         const listGridItem = data.data.map((item, index) => {
             return <GridItem ref={val => this.items.push(val.mainDom.el)}
@@ -195,6 +209,7 @@ class GridLayout extends Component {
         });
         return (
             <div>
+                <Loading setRefLoading={this.setRefLoading}/>
                 <Grid/>
                 <Grid>{listGridItem}</Grid>
                 <Overlay ref={(el) => this.overlay = el}>

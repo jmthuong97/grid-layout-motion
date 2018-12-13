@@ -16,7 +16,7 @@ const MainItem = styled.div`
     padding: 5rem 5vw;
     justify-content: center;
     img{
-        width: 500px;
+        width: 400px;
         filter: grayscale(0);
     }
 `;

@@ -35,7 +35,6 @@ const Title = styled.h3`
     margin: 0;
 	line-height: 1;
 	position: absolute;
-	z-index: 100;
 	@media screen and (min-width: 55em) {
 	    top: -4rem;
 		right: -4.5rem;
