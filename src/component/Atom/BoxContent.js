@@ -14,5 +14,5 @@ const BoxContent = styled.p`
 `;
 
 export default ({children, setRef}) => {
-    return <BoxContent ref={(el) => setRef("content", el)}>{children}</BoxContent>;
+    return <BoxContent ref={(el) => setRef("content", el)} dangerouslySetInnerHTML={{__html: children}}/>;
 }

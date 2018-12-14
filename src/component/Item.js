@@ -19,25 +19,25 @@ const Box = styled.div`
 	}
 `;
 
-export default ({setRef, dataItem, index}) => {
+export default ({setRef, dataItem}) => {
     return (
         <Box>
             <BoxShadow setRef={setRef}/>
-            <BoxImg src={dataItem.image} alt={`image${index}`} setRef={setRef}/>
-            {dataItem.title ?
-                <BoxTitle setRef={setRef} location={dataItem.title.location} straight={dataItem.title.straight}>
-                    <BoxTitleInner>{dataItem.title.content}</BoxTitleInner>
-                </BoxTitle> : ""}
-            {dataItem.text ?
-                <BoxText setRef={setRef} location={dataItem.text.location}>
-                    <BoxTextInner reverse={dataItem.text.reverse}
-                                  rotated={dataItem.text.rotated}>{dataItem.text.content}</BoxTextInner>
-                </BoxText> : ""}
-            {dataItem.icon ?
-                <BoxDeco setRef={setRef}
-                         location={dataItem.icon.location}>{dataItem.icon.content}</BoxDeco> : ""}
-            {dataItem.short_content ?
-                <BoxContent setRef={setRef}>{dataItem.short_content}</BoxContent> : ""}
+            <BoxImg src={dataItem.image} setRef={setRef}/>
+            {dataItem.title &&
+            <BoxTitle setRef={setRef} location={dataItem.title.location} straight={dataItem.title.straight}>
+                <BoxTitleInner>{dataItem.title.content}</BoxTitleInner>
+            </BoxTitle>}
+            {dataItem.text &&
+            <BoxText setRef={setRef} location={dataItem.text.location}>
+                <BoxTextInner reverse={dataItem.text.reverse}
+                              rotated={dataItem.text.rotated}>{dataItem.text.content}</BoxTextInner>
+            </BoxText>}
+            {dataItem.icon &&
+            <BoxDeco setRef={setRef}
+                     location={dataItem.icon.location}>{dataItem.icon.content}</BoxDeco>}
+            {dataItem.short_content &&
+            <BoxContent setRef={setRef}>{dataItem.short_content}</BoxContent>}
         </Box>
     );
 }

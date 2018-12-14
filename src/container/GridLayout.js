@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import styled from 'styled-components';
 import {TweenMax} from "gsap/TweenMax";
 import imagesloaded from 'imagesloaded';
 import {getRandomInt, lineEq} from '../untils/index';
 import Grid from '../component/Atom/Grid';
-import CloseButton from '../component/Atom/CloseButton';
 import GridItem from '../component/GridItem';
 import OverlayItem from '../component/OverlayItem';
 import Loading from '../component/Atom/Loading';
 import data from './data';
+import styled from "styled-components";
 
 const Overlay = styled.div`
     pointer-events: none;
@@ -30,104 +29,23 @@ const OverlayReveal = styled.div`
 	z-index: 100;
 	transform: translate3d(100%,0,0);
 `;
-const OverlayClose = styled.button`
-    position: absolute;
-	top: 0;
-	right: 0;
-	background: none;
-	border: 0;
-	margin: 1rem;
-	padding: 1rem;
-	opacity: 0;
-	&:focus{
-	  outline: none;
-	}
-`;
 
 class GridLayout extends Component {
     constructor(props) {
         super(props);
-        this.isPreviewOpen = false;
-        this.overlay = {};
-        this.overlay_reveal = {};
-        this.overlay_close = {};
-        this.overlay_items = []; // ref: List: Item(parent, image, title, text, icon,...) (OverlayItem.js)
+        this.state = {
+            isLoading: true,
+            isPreviewOpen: false,
+            currentPreview: null
+        };
         this.grid_items = []; // ref: List: Item(image, title, text, icon,...): this.animatable (GridItem.js)
-        this.items = []; // ref: List: MainItem (GridItem.js)
     }
 
-    setRefLoading = (el) => this.loading = el;
     setGridItems = (data) => this.grid_items.push(data);
-    setOverlayItems = (data) => this.overlay_items.push(data);
-
-    show = () => {
-        this.overlay.style.pointerEvents = 'auto';
-        TweenMax.to(this.overlay_reveal, .5, {
-            ease: 'Power1.easeInOut',
-            x: '0%',
-            onComplete: () => {
-                document.body.style.overflow = 'hidden'; // hide scroll
-                this.revealItem(); // show preview
-                // hide reveal
-                TweenMax.to(this.overlay_reveal, .5, {
-                    delay: 0.2,
-                    ease: 'Power3.easeOut',
-                    x: '-100%'
-                });
-                this.overlay_close.style.opacity = 1;
-            }
-        });
-    };
-    hide = () => {
-        this.overlay.style.pointerEvents = 'none';
-        // show reveal
-        TweenMax.to(this.overlay_reveal, .5, {
-            //delay: 0.15,
-            ease: 'Power3.easeOut',
-            x: '0%',
-            onComplete: () => {
-                this.overlay_close.style.opacity = 0;
-                this.contentItem["parent"].style.opacity = 0; // hide preview
-                this.contentItem["parent"].style.flexDirection = 'column';
-                document.body.style.overflow = 'auto'; // show scroll
-                // hide reveal
-                TweenMax.to(this.overlay_reveal, .5, {
-                    delay: 0,
-                    ease: 'Power3.easeOut',
-                    x: '100%'
-                });
-            }
-        });
-    };
-
-    revealItem() {
-        this.contentItem["parent"].style.opacity = 1; // show MainItem (GridItem.js) on center screen
-        this.contentItem["parent"].style.flexDirection = 'row';
-        for (let el of Object.values(this.contentItem)) {
-            if (el == null) continue;
-            const bounds = el.getBoundingClientRect();
-            const win = {width: window.innerWidth, height: window.innerHeight};
-            TweenMax.to(el, lineEq(0.8, 1.2, win.width, 0, Math.abs(bounds.left + bounds.width - win.width)), {
-                ease: 'Expo.easeOut',
-                delay: 0.2,
-                startAt: {
-                    x: `${lineEq(0, 800, win.width, 0, Math.abs(bounds.left + bounds.width - win.width))}`,
-                    y: `${lineEq(-100, 100, win.height, 0, Math.abs(bounds.top + bounds.height - win.height))}`,
-                    rotationZ: `${lineEq(5, 30, 0, win.width, Math.abs(bounds.left + bounds.width - win.width))}`
-                },
-                x: 0,
-                y: 0,
-                rotationZ: 0
-            });
-        }
-    }
 
     onClickOpenItem = (index) => {
-        if (this.isPreviewOpen) return;
-        this.isPreviewOpen = true;
-        this.contentItem = this.overlay_items[index];
-        this.show(); // show content after overlay full screen
-
+        this.setState({currentPreview: index});
+        this.showOverlayReveal();
         for (let item of this.grid_items) {
             for (let key in item) {
                 if (item[key]) {
@@ -164,9 +82,8 @@ class GridLayout extends Component {
         }
     };
     onClickCloseItem = () => {
-        if (!this.isPreviewOpen) return;
-        this.isPreviewOpen = false;
-        this.hide();
+        if (!this.state.isPreviewOpen) return;
+        this.hideOverlayReveal();
         for (let item of this.grid_items) {
             for (let key in item) {
                 if (item[key]) {
@@ -183,6 +100,42 @@ class GridLayout extends Component {
                 }
             }
         }
+        this.setState({isPreviewOpen: false});
+    };
+
+    showOverlayReveal = () => {
+        this.overlay.style.pointerEvents = 'auto';
+        TweenMax.to(this.overlay_reveal, .5, {
+            ease: 'Power1.easeInOut',
+            x: '0%',
+            onComplete: () => {
+                // hide reveal
+                TweenMax.to(this.overlay_reveal, .5, {
+                    delay: 0.2,
+                    ease: 'Power3.easeOut',
+                    x: '-100%'
+                });
+                this.setState({isPreviewOpen: true});
+            }
+        });
+    };
+    hideOverlayReveal = () => {
+        this.overlay.style.pointerEvents = 'none';
+        // show reveal
+        TweenMax.to(this.overlay_reveal, .5, {
+            //delay: 0.15,
+            ease: 'Power3.easeOut',
+            x: '0%',
+            onComplete: () => {
+                document.body.style.overflow = 'auto'; // show scroll
+                // hide reveal
+                TweenMax.to(this.overlay_reveal, .5, {
+                    delay: 0,
+                    ease: 'Power3.easeOut',
+                    x: '100%'
+                });
+            }
+        });
     };
 
     componentDidMount() {
@@ -191,35 +144,31 @@ class GridLayout extends Component {
             return data.image;
         });
         imagesloaded(listImage, () => {
-            this.loading.style.display = "none";
+            this.setState({isLoading: false});
             document.body.style.overflow = 'scroll'; // hide scroll
         });
     }
 
     render() {
+        const {isLoading, currentPreview, isPreviewOpen} = this.state;
         const listGridItem = data.data.map((item, index) => {
-            return <GridItem ref={val => this.items.push(val.mainDom.el)}
-                             setGridItems={this.setGridItems}
-                             onClickOpenItem={this.onClickOpenItem}
-                             key={index} index={index} dataItem={item}/>;
+            return <GridItem
+                setGridItems={this.setGridItems}
+                onClickOpenItem={this.onClickOpenItem}
+                key={index} index={index} dataItem={item}/>;
         });
-        const listOverlayItem = data.data.map((item, index) => {
-            return <OverlayItem setOverlayItems={this.setOverlayItems}
-                                key={index} dataItem={item}/>;
-        });
+
         return (
             <div>
-                <Loading setRefLoading={this.setRefLoading}/>
                 <Grid/>
                 <Grid>{listGridItem}</Grid>
-                <Overlay ref={(el) => this.overlay = el}>
-                    <OverlayReveal ref={(el) => this.overlay_reveal = el}/>
-                    {listOverlayItem}
-                    <OverlayClose onClick={this.onClickCloseItem}
-                                  ref={(el) => this.overlay_close = el}>
-                        <CloseButton/>
-                    </OverlayClose>
+                <Overlay ref={el => this.overlay = el}>
+                    <OverlayReveal ref={el => this.overlay_reveal = el}/>
+                    {isPreviewOpen &&
+                    <OverlayItem onClickCloseItem={this.onClickCloseItem}
+                                 dataItem={data.data[currentPreview]}/>}
                 </Overlay>
+                {isLoading && <Loading/>}
             </div>
         );
     }

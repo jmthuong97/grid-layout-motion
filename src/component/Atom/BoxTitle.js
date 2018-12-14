@@ -6,7 +6,7 @@ const TitleInner = styled.span`
 	position: relative;
 	font-weight: normal;
 	text-transform: uppercase;
-	font-size: 4.15rem;
+	font-size: 3.15rem;
 	letter-spacing: 0.15rem;
 	line-height: 1.25;
 	font-family: 'Anton', sans-serif;
@@ -37,7 +37,7 @@ const Title = styled.h3`
 	position: absolute;
 	@media screen and (min-width: 55em) {
 	    top: -4rem;
-		right: -4.5rem;
+		right: -3.5rem;
 		-webkit-writing-mode: vertical-rl;
 		writing-mode: vertical-rl;
 	}

@@ -38,6 +38,6 @@ const Loading = styled.div`
     }
 `;
 
-export default ({setRefLoading}) => {
-    return <Loading ref={(el) => setRefLoading(el)}/>;
+export default () => {
+    return <Loading/>;
 };

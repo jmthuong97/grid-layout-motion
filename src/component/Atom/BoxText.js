@@ -7,7 +7,7 @@ const Text = styled.h4`
 	font-weight: normal;
 	text-transform: uppercase;
 	letter-spacing: 0.15rem;
-	font-size: 1.75rem;
+	font-size: 1.5rem;
 	margin: 0.5rem 1rem;
 	font-family: 'Anton', sans-serif;
 	@media screen and (max-width: 55em) {
