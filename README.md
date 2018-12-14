@@ -1,4 +1,6 @@
-### [LINK DEMO](https://grid-layout-motion.herokuapp.com/)
+### [LINK DEMO](https://grid-layout-motion.herokuapp.com)
+
+### [Reference Link](https://tympanus.net/codrops/2018/05/23/grid-layout-with-motion-hover)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
