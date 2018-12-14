@@ -1,49 +1,32 @@
 {
   "data": [
     {
-      "image": {
-        "src": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F1.jpg?alt=media&token=469534ba-1407-4bdd-9185-e1f5a20a6566",
-        "alt": "image1"
-      },
+      "image": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F4.jpg?alt=media&token=7f9b69c3-a646-40f8-a8ed-33861ac617e1",
       "title": {
-        "content": "Memo"
+        "content": "About me"
       },
       "text": {
-        "content": "Beast",
+        "content": "jmthuong97",
         "rotated": "rotated1"
       },
-      "icon": {
-        "content": "✞"
-      },
-      "short_content": "\"Sometimes we go surfing when it's stormy weather\"",
-      "description": "It's time the tale were told of how you took a child and you made him old."
+      "short_content": "\"I'm a web designer, front-end developer and I love programming\"",
+      "description": "&hearts; Nguyen Nhu Thuong <br/> &hearts; 05/06/1997 <br/> &hearts; +84-98635222 <br/> &hearts; Hanoi, Vietnam <br/> My objective is taking advantages of software developer skills, experience from university and understanding of software to become a professional software engineer. I always try my best to learn new programming languages and develop new ideas to create quality products."
     },
     {
-      "image": {
-        "src": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F2.jpg?alt=media&token=4f534e6a-1d04-4818-8302-4c9f97255dd9",
-        "alt": "image2"
-      },
+      "image": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F3.jpg?alt=media&token=af952793-c025-4f50-94e4-0ab7b538612c",
       "title": {
-        "content": "Gun",
-        "location": "bottom",
+        "content": "Love",
+        "location": "left",
         "straight": true
       },
-      "text": {
-        "content": "Rain",
-        "location": "bottom",
-        "rotated": "rotated1"
-      },
       "icon": {
-        "content": "➃",
+        "content": "♥",
         "location": "top"
       },
       "description": "It's time the tale were told of how you took a child and you made him old."
     },
     {
-      "image": {
-        "src": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F3.jpg?alt=media&token=112c3aa0-cd10-4d47-8a3c-49082f40621c",
-        "alt": "image3"
-      },
+      "image": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F32.jpg?alt=media&token=f7727abc-27c6-4400-95a9-3c4db5c2da4b",
       "title": {
         "content": "Red",
         "location": "bottom"
@@ -56,10 +39,27 @@
       "description": "It's time the tale were told of how you took a child and you made him old."
     },
     {
-      "image": {
-        "src": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F4.jpg?alt=media&token=78894d54-297e-4a5e-8b74-cc715455c7ed",
-        "alt": "image4"
+      "image": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F9.jpg?alt=media&token=987f6797-6f4b-4f69-a12e-c5acbbebdb4b",
+      "text": {
+        "content": "Sponsor",
+        "rotated": "rotated2",
+        "reverse": true
       },
+      "short_content": "Offers simplified planning and collaboration tools. Create customizable boards to track everything your team is working on and keep all communication in one place and never lose track again.",
+      "description": "It's time the tale were told of how you took a child and you made him old."
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F30.jpg?alt=media&token=2401f5bd-4244-4831-8d46-491b99b0d481",
+      "text": {
+        "content": "FU Photo",
+        "rotated": "rotated2",
+        "reverse": true
+      },
+      "short_content": "Offers simplified planning and collaboration tools. Create customizable boards to track everything your team is working on and keep all communication in one place and never lose track again.",
+      "description": "It's time the tale were told of how you took a child and you made him old."
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/test-acf65.appspot.com/o/grid-layout-motion%2F30.jpg?alt=media&token=2401f5bd-4244-4831-8d46-491b99b0d481",
       "text": {
         "content": "Sponsor",
         "rotated": "rotated2",

@@ -16,17 +16,17 @@ const MainItem = styled.div`
     padding: 5rem 5vw;
     justify-content: center;
     img{
-        width: 400px;
+        width: 25em;
         filter: grayscale(0);
     }
 `;
 const OverlayContent = styled.p`
-    font-size: 2.25rem;
+    font-size: 1.25rem;
 	line-height: 1.5;
 	max-width: 25rem;
-	margin: 1rem 0 0 10vw;
+	margin: 1rem 0 0 1rem;
 	@media screen and (min-width: 55em) {
-	    font-size: 2.25rem;
+	    font-size: 1.25rem;
 		margin-top: 0;
 	}
 `;
@@ -49,11 +49,11 @@ class OverlayItem extends Component {
         return (
             <MainItem ref={el => this.animatable["parent"] = el}>
                 <Item dataItem={dataItem} setRef={this.setRef}/>
-                <OverlayContent ref={el => this.animatable["overlay_content"] = el}>
-                    {dataItem.description}
-                </OverlayContent>
+                <OverlayContent ref={el => this.animatable["overlay_content"] = el}
+                                dangerouslySetInnerHTML={{__html: dataItem.description}}/>
             </MainItem>
         );
     }
 }
+
 export default OverlayItem;

@@ -137,7 +137,7 @@ class GridItem extends Component {
                       onMouseEnter={this.mouseenterFn}
                       onMouseLeave={this.mouseleaveFn}
                       onMouseMove={this.mousemoveFn}>
-                <Item dataItem={dataItem} setRef={this.setRef}/>
+                <Item dataItem={dataItem} index={index} setRef={this.setRef}/>
             </MainItem>
         );
     }

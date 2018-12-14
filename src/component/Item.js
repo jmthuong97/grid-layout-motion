@@ -19,11 +19,11 @@ const Box = styled.div`
 	}
 `;
 
-export default ({setRef, dataItem}) => {
+export default ({setRef, dataItem, index}) => {
     return (
         <Box>
             <BoxShadow setRef={setRef}/>
-            <BoxImg src={dataItem.image.src} alt={dataItem.image.alt} setRef={setRef}/>
+            <BoxImg src={dataItem.image} alt={`image${index}`} setRef={setRef}/>
             {dataItem.title ?
                 <BoxTitle setRef={setRef} location={dataItem.title.location} straight={dataItem.title.straight}>
                     <BoxTitleInner>{dataItem.title.content}</BoxTitleInner>
